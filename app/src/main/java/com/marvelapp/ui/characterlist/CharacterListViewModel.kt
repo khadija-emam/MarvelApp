@@ -34,18 +34,9 @@ class CharacterListViewModel @Inject constructor(val repository: Repository)  : 
     init {
         getCharacters()
     }
-    fun filter(searchWord: String) {
-        if (searchWord.isNotEmpty()) {
-            val filteredItem = _charactersList.value?.filter { product ->
-                product.name.contains(searchWord)
-            }
-            _charactersList.value = filteredItem!!
-        } else {
-            _charactersList.value = _response
-        }
-    }
 
-    fun getCharacters() {
+
+    private fun getCharacters() {
         viewModelScope.launch {
             _progress.value=true
             val result=repository.getCharacters()

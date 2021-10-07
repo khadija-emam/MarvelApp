@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 tool:src="@drawable/ic_marvel_studios_logo"
                 android:scaleType="fitXY"
-                imageUrl="@{character.thumbnail.path}"
+                characterImageUrl="@{character.thumbnail}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
 

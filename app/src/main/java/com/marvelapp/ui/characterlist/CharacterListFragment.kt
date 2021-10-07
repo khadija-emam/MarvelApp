@@ -45,13 +45,14 @@ class CharacterListFragment : Fragment() {
 
     private fun navigateToSearch(){
         binding.search.setOnClickListener{
-            findNavController().navigate(CharacterListFragmentDirections.actionCharacterListFragmentToSearchFragment())
+            findNavController().navigate(CharacterListFragmentDirections.actionCharacterListFragmentToSearchFragment(
+                adapter.currentList.toTypedArray()
+            ))
         }
     }
     private fun observeNavigation() {
         viewModel.navigate.observe(viewLifecycleOwner) {
             it?.let {
-                Log.i("TAG", "observeNavigation: $it")
                 findNavController().navigate(CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailsFragment())
                 viewModel.completeNavigation()
             }

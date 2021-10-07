@@ -21,6 +21,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:minHeight="40dp"
+            android:layout_marginTop="8dp"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
@@ -29,7 +30,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:startIconDrawable="@drawable/ic_search_white"
-            app:startIconTint="@color/white">
+            app:startIconTint="@color/white"
+
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/search_ed"
@@ -49,7 +52,7 @@
             android:visibility="visible"
             android:text="@string/cancel"
             android:textSize="18sp"
-            android:textColor="@color/white"
+            android:textColor="#FD5D5D"
             android:gravity="center"
             android:textStyle="bold"
             android:layout_marginEnd="8dp"

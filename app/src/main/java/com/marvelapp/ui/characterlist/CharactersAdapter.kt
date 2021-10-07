@@ -1,6 +1,7 @@
 package com.marvelapp.ui.characterlist
 
 import android.view.LayoutInflater
+import android.view.PointerIcon.load
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -18,7 +19,6 @@ class CharactersAdapter  (val onClickListener: CharacterClickListener) : ListAda
         val character = getItem(position)
         holder.bind(character)
         holder.itemView.setOnClickListener { character?.let { onClickListener.onClick(it) } }
-
 
     }
 

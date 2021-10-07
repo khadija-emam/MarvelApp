@@ -1,7 +1,8 @@
 package com.marvelapp.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-
+import kotlinx.android.parcel.Parcelize
 
 
 data class CharactersResponse(
@@ -21,6 +22,7 @@ data class Data(
     @SerializedName("count") val count : Int,
     @SerializedName("results") val characters : List<Character>
 )
+@Parcelize
 data class Character (
 
     @SerializedName("id") val id : Int,
@@ -34,52 +36,59 @@ data class Character (
     @SerializedName("stories") val stories : Stories,
     @SerializedName("events") val events : Events,
     @SerializedName("urls") val urls : List<Urls>
-)
+):Parcelable
 
+@Parcelize
 data class Comics (
 
     @SerializedName("available") val available : Int,
     @SerializedName("collectionURI") val collectionURI : String,
     @SerializedName("items") val items : List<Items>,
     @SerializedName("returned") val returned : Int
-)
+):Parcelable
 
+@Parcelize
 data class Series (
 
     @SerializedName("available") val available : Int,
     @SerializedName("collectionURI") val collectionURI : String,
     @SerializedName("items") val items : List<Items>,
     @SerializedName("returned") val returned : Int
-)
+):Parcelable
 
+@Parcelize
 data class Stories (
 
     @SerializedName("available") val available : Int,
     @SerializedName("collectionURI") val collectionURI : String,
     @SerializedName("items") val items : List<Items>,
     @SerializedName("returned") val returned : Int
-)
+):Parcelable
 
+@Parcelize
 data class Urls (
 
     @SerializedName("type") val type : String,
     @SerializedName("url") val url : String
-)
+):Parcelable
 
+@Parcelize
 data class Events (
 
     @SerializedName("available") val available : Int,
     @SerializedName("collectionURI") val collectionURI : String,
     @SerializedName("items") val items : List<Items>,
     @SerializedName("returned") val returned : Int
-)
+):Parcelable
+@Parcelize
 data class Items (
 
     @SerializedName("resourceURI") val resourceURI : String,
     @SerializedName("name") val name : String
-)
+):Parcelable
+@Parcelize
 data class Thumbnail (
 
     @SerializedName("path") val path : String,
     @SerializedName("extension") val extension : String
-)
+):Parcelable

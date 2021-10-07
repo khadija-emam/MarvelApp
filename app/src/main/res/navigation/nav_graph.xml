@@ -28,5 +28,8 @@
         <action
             android:id="@+id/action_searchFragment_to_characterDetailsFragment"
             app:destination="@id/characterDetailsFragment" />
+        <argument
+            android:name="characters"
+            app:argType="com.marvelapp.model.Character[]" />
     </fragment>
 </navigation>
