@@ -8,7 +8,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RetrofitService {
-    @GET("v1/public/characters?apikey=63b1f94dad044add871d1e319c630265")
-   suspend fun getCharacters(@Query("apiKey")apiKey:String= API_KEY):Response<CharactersResponse>
-
+    @GET("/v1/public/characters")
+    suspend fun getCharacters(): Response<CharactersResponse>
 }

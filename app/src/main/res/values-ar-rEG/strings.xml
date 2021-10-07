@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MarvelApp</string>
+    <string name="no_characters">لا يوجد شخصيات الان</string>
+    <string name="cancel">الغاء</string>
+    <string name="search_for_a_character">ابحث عن شخصية..</string>
+</resources>

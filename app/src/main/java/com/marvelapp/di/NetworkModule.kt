@@ -19,10 +19,11 @@ import javax.inject.Singleton
  * Movie API communication setup via Retrofit.
  */
  const val API_KEY = "63b1f94dad044add871d1e319c630265"
-private const val NEWS_BASE_URL = "https://gateway.marvel.com"
+private const val NEWS_BASE_URL = "https://gateway.marvel.com/"
 private const val API_PUBLIC="4dca613e1fb17f606801b604fe4c833b"
 private const val API_PRIVATE="93b89f393de8af4f9ab7f8f34988500153cf7944"
         // Install this module in Hilt-generated SingletonComponent
+
 @InstallIn(SingletonComponent::class)
 @Module
 class NetworkModule {
@@ -31,9 +32,9 @@ class NetworkModule {
     // Makes Hilt provide Retrofit instance when a Retrofit type is requested
     @Provides
     @Singleton
-    fun providesRetrofit(): RetrofitService {
+    fun providesRetrofit( okHttpClient: OkHttpClient): RetrofitService {
         // Configure retrofit to parse JSON and use coroutines
-        val retrofit = Retrofit.Builder().client(OkHttpClient())
+        val retrofit = Retrofit.Builder().client(okHttpClient)
             .baseUrl(NEWS_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -42,6 +43,8 @@ class NetworkModule {
 
         return retrofit.create(RetrofitService::class.java)
     }
+
+    @Provides
     fun createOkHttpClient(): OkHttpClient {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BASIC

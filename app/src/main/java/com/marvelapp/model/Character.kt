@@ -19,9 +19,9 @@ data class Data(
     @SerializedName("limit") val limit : Int,
     @SerializedName("total") val total : Int,
     @SerializedName("count") val count : Int,
-    @SerializedName("results") val results : List<Results>
+    @SerializedName("results") val characters : List<Character>
 )
-data class Results (
+data class Character (
 
     @SerializedName("id") val id : Int,
     @SerializedName("name") val name : String,

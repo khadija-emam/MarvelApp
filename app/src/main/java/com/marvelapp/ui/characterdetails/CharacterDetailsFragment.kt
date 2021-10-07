@@ -6,10 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.marvelapp.R
+import com.marvelapp.databinding.CharacterDetailsFragmentBinding
+import com.marvelapp.databinding.SearchFragmentBinding
+import com.marvelapp.ui.search.SearchViewModel
 
 class CharacterDetailsFragment : Fragment() {
+
+    lateinit var binding: CharacterDetailsFragmentBinding
 
 
     private  val viewModel: CharacterDetailsViewModel by viewModels()
@@ -18,12 +24,13 @@ class CharacterDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.character_details_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.character_details_fragment, container, false)
+        binding.lifecycleOwner = this
+
+
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-         // TODO: Use the ViewModel
-    }
+
 
 }
