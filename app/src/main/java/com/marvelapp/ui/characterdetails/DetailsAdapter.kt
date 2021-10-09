@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.marvelapp.databinding.CharacterItemBinding
 import com.marvelapp.databinding.DetailsItemBinding
 import com.marvelapp.model.Character
+import com.marvelapp.model.Detail
 import com.marvelapp.model.Items
 import com.marvelapp.ui.characterlist.CharactersAdapter
 
-class DetailsAdapter  (val onClickListener: DetailsClickListener) : ListAdapter<Items, DetailsAdapter.DetailsViewHolder>(DetailsDiffCallback()) {
+class DetailsAdapter  (val onClickListener: DetailsClickListener) : ListAdapter<Detail, DetailsAdapter.DetailsViewHolder>(DetailsDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsViewHolder {
         return DetailsViewHolder.from(parent)
@@ -26,7 +27,7 @@ class DetailsAdapter  (val onClickListener: DetailsClickListener) : ListAdapter<
 
     class DetailsViewHolder private constructor(val binding: DetailsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Items) {
+        fun bind(item: Detail) {
             binding.item = item
             binding.executePendingBindings()
         }
@@ -42,14 +43,15 @@ class DetailsAdapter  (val onClickListener: DetailsClickListener) : ListAdapter<
 }
 
 
-class DetailsDiffCallback : DiffUtil.ItemCallback<Items>() {
-    override fun areItemsTheSame(oldItem: Items, newItem: Items): Boolean {
-        return oldItem.resourceURI == newItem.resourceURI
+class DetailsDiffCallback : DiffUtil.ItemCallback<Detail>() {
+    override fun areItemsTheSame(oldItem: Detail, newItem: Detail): Boolean {
+        return oldItem.id == newItem.id
+
     }
 
-    override fun areContentsTheSame(oldItem: Items, newItem: Items): Boolean {
+    override fun areContentsTheSame(oldItem: Detail, newItem: Detail): Boolean {
         return oldItem == newItem
     }
 }
 
-class DetailsClickListener(val onClick: (item:Items) -> Unit)
+class DetailsClickListener(val onClick: (item:Detail) -> Unit)

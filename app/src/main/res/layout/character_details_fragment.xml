@@ -5,157 +5,58 @@
    >
 
     <data>
-
-
+<variable
+    name="viewModel"
+    type="com.marvelapp.ui.characterdetails.CharacterDetailsViewModel" />
+<import type="android.view.View"/>
     </data>
-
-    <ScrollView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
-        tools:context=".ui.characterdetails.CharacterDetailsFragment">
-  <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-      <androidx.cardview.widget.CardView
-          android:id="@+id/img_card"
-          android:layout_width="match_parent"
-          android:layout_height="200dp"
-          android:background="@drawable/bottom_curved_shape"
-          app:cardBackgroundColor="@color/black"
-          app:layout_constraintTop_toTopOf="parent">
-          <ImageView
-              android:id="@+id/character_img"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:scaleType="fitXY"
+        android:fitsSystemWindows="true"
+        tools:context=".ScrollingActivity"
+        android:background="@color/black">
 
-              />
-      </androidx.cardview.widget.CardView>
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            android:fitsSystemWindows="true"
+            android:theme="@style/Theme.MarvelApp.AppBarOverlay">
 
-      <TextView
-          android:id="@+id/character_name"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="24dp"
-          android:layout_marginStart="16dp"
-          android:textColor="@color/white"
-          android:textSize="24sp"
-          tools:text="marvel"
-          android:textStyle="bold"
-          app:layout_constraintTop_toBottomOf="@id/img_card"
-          app:layout_constraintStart_toStartOf="parent"
-          />
-      <TextView
-          android:id="@+id/desc"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="24dp"
-          android:layout_marginStart="16dp"
-          android:textColor="@color/red"
-          android:textSize="18sp"
-          android:text="@string/Description"
-          android:textStyle="bold"
-          app:layout_constraintTop_toBottomOf="@id/character_name"
-          app:layout_constraintStart_toStartOf="parent"/>
-      <TextView
-          android:id="@+id/character_desc"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="8dp"
-          android:layout_marginStart="16dp"
-          android:textColor="@color/white"
-          android:textSize="16sp"
-          tools:text="marvel"
-          app:layout_constraintTop_toBottomOf="@id/desc"
-          app:layout_constraintStart_toStartOf="parent"
-          />
-      <TextView
-          android:id="@+id/comics"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="24dp"
-          android:layout_marginStart="16dp"
-          android:textColor="@color/red"
-          android:textSize="18sp"
-          android:text="@string/Comics"
-          android:textStyle="bold"
-          app:layout_constraintTop_toBottomOf="@id/character_desc"
-          app:layout_constraintStart_toStartOf="parent"
-          />
-      <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/comics_rv"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:layout_constraintTop_toBottomOf="@id/comics"
-          app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-          android:orientation="horizontal"/>
-      <TextView
-          android:id="@+id/events"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="24dp"
-          android:layout_marginStart="16dp"
-          android:textColor="@color/red"
-          android:textSize="18sp"
-          android:text="@string/events"
-          android:textStyle="bold"
-          app:layout_constraintTop_toBottomOf="@id/comics_rv"
-          app:layout_constraintStart_toStartOf="parent"/>
-      <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/events_rv"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:layout_constraintTop_toBottomOf="@id/events"
-          app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-          android:orientation="horizontal"/>
-      <TextView
-          android:id="@+id/series"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="24dp"
-          android:layout_marginStart="16dp"
-          android:textColor="@color/red"
-          android:textSize="18sp"
-          android:text="@string/series"
-          android:textStyle="bold"
-          app:layout_constraintTop_toBottomOf="@id/events_rv"
-          app:layout_constraintStart_toStartOf="parent"/>
-      <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/series_rv"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:layout_constraintTop_toBottomOf="@id/series"
-          app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-          android:orientation="horizontal"/>
-      <TextView
-          android:id="@+id/stories"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="24dp"
-          android:layout_marginStart="16dp"
-          android:textColor="@color/red"
-          android:textSize="18sp"
-          android:text="@string/stories"
-          android:textStyle="bold"
-          app:layout_constraintTop_toBottomOf="@id/series_rv"
-          app:layout_constraintStart_toStartOf="parent"/>
-      <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/stories_rv"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:layout_constraintTop_toBottomOf="@id/stories"
-          app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-          android:orientation="horizontal"/>
-      <ProgressBar
-          android:id="@+id/loading"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:visibility="gone"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</layout>
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:toolbarId="@+id/toolbar">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/img_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/bottom_curved_shape"
+                    app:cardBackgroundColor="@color/black"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/character_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+
+                        />
+                </androidx.cardview.widget.CardView>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <include
+            android:id="@+id/content"
+            layout="@layout/content_scrolling" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </layout>

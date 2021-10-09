@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.marvelapp.R
 import com.marvelapp.bindCharacterImage
@@ -17,6 +18,7 @@ import com.marvelapp.databinding.CharacterDetailsFragmentBinding
 import com.marvelapp.databinding.SearchFragmentBinding
 import com.marvelapp.model.Character
 import com.marvelapp.ui.characterlist.CharacterClickListener
+import com.marvelapp.ui.characterlist.CharacterListFragmentDirections
 import com.marvelapp.ui.characterlist.CharactersAdapter
 import com.marvelapp.ui.search.SearchFragmentArgs
 import com.marvelapp.ui.search.SearchViewModel
@@ -41,19 +43,25 @@ class CharacterDetailsFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.character_details_fragment, container, false)
         binding.lifecycleOwner = this
+        binding.viewModel=viewModel
         viewModel.getCharacterData(args.id)
 
         setUpAdapter()
 
         observeForCharacter()
+        observeForComics()
+        observeForEvents()
+        observeForSeries()
+        observeForStories()
+        observeNavigation()
         observeForLoading()
         observeForMessage()
 
         return binding.root
     }
     private fun setCharacterData(character:Character){
-        binding.characterName.text=character.name
-        binding.characterDesc.text=character.description
+        binding.content.characterName.text=character.name
+        binding.content.characterDesc.text=character.description
         bindCharacterImage(binding.characterImg,character.thumbnail)
     }
     private fun observeForMessage() {
@@ -64,36 +72,61 @@ class CharacterDetailsFragment : Fragment() {
     private fun observeForLoading() {
         viewModel.progress.observe(viewLifecycleOwner, Observer {
             if (it) {
-                binding.loading.visibility = View.VISIBLE
+                binding.content.loading.visibility = View.VISIBLE
             } else {
-                binding.loading.visibility = View.GONE
+                binding.content.loading.visibility = View.GONE
 
             }
         })
     }
 
+    private fun observeNavigation() {
+        viewModel.navigate.observe(viewLifecycleOwner) {
+            it?.let {
+                findNavController().navigate(CharacterDetailsFragmentDirections.actionCharacterDetailsFragmentToPhotoViewFragment(it))
+                viewModel.completeNavigation()
+            }
+        }
+    }
+
     private fun setUpAdapter() {
         comicsAdapter = DetailsAdapter(DetailsClickListener { viewModel.onItemClicked(it) })
-        binding.comicsRv.adapter = comicsAdapter
+        binding.content.comicsRv.adapter = comicsAdapter
 
        eventsAdapter = DetailsAdapter(DetailsClickListener { viewModel.onItemClicked(it) })
-        binding.eventsRv.adapter = eventsAdapter
+        binding.content.eventsRv.adapter = eventsAdapter
 
         seriesAdapter = DetailsAdapter(DetailsClickListener { viewModel.onItemClicked(it) })
-        binding.seriesRv.adapter = seriesAdapter
+        binding.content.seriesRv.adapter = seriesAdapter
 
         storiesAdapter = DetailsAdapter(DetailsClickListener { viewModel.onItemClicked(it) })
-        binding.storiesRv.adapter = storiesAdapter
+        binding.content.storiesRv.adapter = storiesAdapter
     }
     private fun observeForCharacter() {
         viewModel.charactersList.observe(viewLifecycleOwner, Observer {
             setCharacterData(it[0])
-           comicsAdapter.submitList(it[0].comics.items)
-            eventsAdapter.submitList(it[0].events.items)
-            seriesAdapter.submitList(it[0].series.items)
-            storiesAdapter.submitList(it[0].stories.items)
 
         })
     }
+    private fun observeForComics() {
+        viewModel.comicsList.observe(viewLifecycleOwner, Observer {
 
+         comicsAdapter.submitList(it)
+        })
+    }
+    private fun observeForEvents() {
+        viewModel.eventsList.observe(viewLifecycleOwner, Observer {
+            eventsAdapter.submitList(it)
+        })
+    }
+    private fun observeForSeries() {
+        viewModel.seriesList.observe(viewLifecycleOwner, Observer {
+            seriesAdapter.submitList(it)
+        })
+    }
+    private fun observeForStories() {
+        viewModel.storiesList.observe(viewLifecycleOwner, Observer {
+            storiesAdapter.submitList(it)
+        })
+    }
 }

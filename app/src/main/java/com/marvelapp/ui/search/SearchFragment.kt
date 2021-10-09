@@ -37,7 +37,6 @@ class SearchFragment : Fragment() {
         binding.lifecycleOwner = this
         setAdapter()
         getCharacterList()
-      //  setGravity()
         search()
         navigateBack()
         observeForFiltered()
@@ -47,20 +46,10 @@ class SearchFragment : Fragment() {
     }
 
     private fun getCharacterList(){
-        Log.i("TAG", "getCharacterList: ${args.characters}")
         viewModel.charactersList=args.characters.toList()
     }
 
-//     private fun setGravity(){
-//        val window: Window? = dialog!!.window
-//
-//        // set "origin" to top left corner, so to speak
-//
-//        // set "origin" to top left corner, so to speak
-//        window?.setGravity(Gravity.TOP)
-//
-//
-//    }
+
     private fun navigateBack(){
         binding.cancelButton.setOnClickListener {
             findNavController().popBackStack()

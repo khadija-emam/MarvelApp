@@ -3,18 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/characterListFragment">
+    app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/characterListFragment"
         android:name="com.marvelapp.ui.characterlist.CharacterListFragment"
         android:label="character_list_fragment"
-        tools:layout="@layout/character_list_fragment" >
+        tools:layout="@layout/character_list_fragment"
+        >
         <action
             android:id="@+id/action_characterListFragment_to_characterDetailsFragment"
-            app:destination="@id/characterDetailsFragment" />
+            app:destination="@id/characterDetailsFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_characterListFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/characterDetailsFragment"
@@ -24,16 +30,42 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_characterDetailsFragment_to_photoViewFragment"
+            app:destination="@id/photoViewFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.marvelapp.ui.search.SearchFragment"
-        android:label="SearchFragment" >
+        android:label="SearchFragment"
+        tools:layout="@layout/search_fragment">
         <action
             android:id="@+id/action_searchFragment_to_characterDetailsFragment"
             app:destination="@id/characterDetailsFragment" />
         <argument
             android:name="characters"
             app:argType="com.marvelapp.model.Character[]" />
+    </fragment>
+    <dialog
+        android:id="@+id/photoViewFragment"
+        android:name="com.marvelapp.ui.characterdetails.PhotoViewFragment"
+        android:label="PhotoViewFragment"
+        tools:layout="@layout/view_photo_dialog">
+        <argument
+            android:name="img"
+            app:argType="com.marvelapp.model.Thumbnail" />
+    </dialog>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.marvelapp.ui.splash.SplashFragment"
+        android:label="SplashFragment"
+
+        tools:layout="@layout/splash">
+        <action
+            android:id="@+id/action_splashFragment_to_characterListFragment"
+            app:destination="@id/characterListFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

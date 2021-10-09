@@ -2,6 +2,7 @@ package com.marvelapp.data.remotedata
 
 
 import com.marvelapp.model.CharactersResponse
+import com.marvelapp.model.DetailsResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -18,9 +19,9 @@ interface RetrofitService {
 
     ): Response<CharactersResponse>
 
-    @GET("/v1/public/characters/{characterId}")
+    @GET("/v1/public/characters/{characterId}/{type}")
     suspend fun getImage(
         @Path("characterId") characterId: Int,
-        @QueryName name:String
-    )
+        @Path ("type")type:String
+    ):Response<DetailsResponse>
 }

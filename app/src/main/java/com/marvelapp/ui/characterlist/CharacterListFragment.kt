@@ -41,7 +41,6 @@ class CharacterListFragment : Fragment() {
         observeForCharacters()
         observeForLoading()
         observeNavigation()
-        observeForNoCharacters()
         navigateToSearch()
         return binding.root
     }
@@ -72,16 +71,7 @@ class CharacterListFragment : Fragment() {
             }
         })
     }
-    private fun observeForNoCharacters() {
-        viewModel.noCharacter.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                binding.noNews.visibility = View.VISIBLE
-            } else {
-                binding.noNews.visibility = View.GONE
 
-            }
-        })
-    }
 
     private fun observeForCharacters() {
         viewModel.charactersList.observe(viewLifecycleOwner, Observer {

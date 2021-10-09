@@ -15,6 +15,28 @@ data class CharactersResponse(
     @SerializedName("etag") val etag : String,
     @SerializedName("data") val data : Data
     )
+data class DetailsResponse(
+
+    @SerializedName("code") val code : Int,
+    @SerializedName("status") val status : String,
+    @SerializedName("copyright") val copyright : String,
+    @SerializedName("attributionText") val attributionText : String,
+    @SerializedName("attributionHTML") val attributionHTML : String,
+    @SerializedName("etag") val etag : String,
+    @SerializedName("data") val data : DetailsData
+)
+data class DetailsData(
+    @SerializedName("offset") val offset : Int,
+    @SerializedName("limit") val limit : Int,
+    @SerializedName("total") val total : Int,
+    @SerializedName("count") val count : Int,
+    @SerializedName("results") val detail : List<Detail>
+)
+data class Detail(
+    @SerializedName("id") val id : Int,
+    @SerializedName("title") val name : String,
+    @SerializedName("thumbnail") val thumbnail : Thumbnail
+    )
 data class Data(
     @SerializedName("offset") val offset : Int,
     @SerializedName("limit") val limit : Int,

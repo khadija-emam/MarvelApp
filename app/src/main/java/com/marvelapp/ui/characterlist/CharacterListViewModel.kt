@@ -21,9 +21,7 @@ class CharacterListViewModel @Inject constructor(val repository: Repository) : V
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String>
         get() = _errorMessage
-    private val _noCharacter = MutableLiveData<Boolean>()
-    val noCharacter: LiveData<Boolean>
-        get() = _noCharacter
+
     private val _progress = MutableLiveData<Boolean>()
     val progress: LiveData<Boolean>
         get() = _progress
@@ -45,7 +43,6 @@ class CharacterListViewModel @Inject constructor(val repository: Repository) : V
             try {
                 if (!result?.data?.characters.isNullOrEmpty()) {
                     _progress.value = false
-                    _noCharacter.value = false
                     val list = mutableListOf<Character>().apply {
                         _charactersList.value?.let { addAll(it) }
                         result?.data?.characters?.let { addAll(it) }
@@ -55,11 +52,9 @@ class CharacterListViewModel @Inject constructor(val repository: Repository) : V
                     offset += limit
 
                 } else {
-                    _noCharacter.value = true
                     _progress.value = false
                 }
             } catch (e: Exception) {
-                _noCharacter.value = false
 
                 _progress.value = false
                 _errorMessage.value = e.message
