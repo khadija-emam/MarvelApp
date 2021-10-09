@@ -3,4 +3,9 @@
     <string name="no_characters">"There is no characters "</string>
     <string name="cancel">Cancel</string>
     <string name="search_for_a_character" >search for a character..</string>
+    <string name="Description">Description</string>
+    <string name="Comics">Comics</string>
+    <string name="events">Events</string>
+    <string name="series">Series</string>
+    <string name="stories">Stories</string>
 </resources>

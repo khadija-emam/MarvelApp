@@ -12,8 +12,7 @@ import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class CharacterListViewModel @Inject constructor(val repository: Repository)  : ViewModel() {
-    private var _response = listOf<Character>()
+class CharacterListViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
     private val _charactersList = MutableLiveData<List<Character>>()
     val charactersList: LiveData<List<Character>>
@@ -31,43 +30,51 @@ class CharacterListViewModel @Inject constructor(val repository: Repository)  : 
     private val _navigate = MutableLiveData<Character?>()
     val navigate: LiveData<Character?>
         get() = _navigate
+    private var limit = 20
+    private var offset = 1
+
     init {
         getCharacters()
     }
 
 
-    private fun getCharacters() {
+    fun getCharacters() {
         viewModelScope.launch {
-            _progress.value=true
-            val result=repository.getCharacters()
+            _progress.value = true
+            val result = repository.getCharacters(limit, offset)
             try {
-                if (!result?.data?.characters.isNullOrEmpty()){
-                    _progress.value=false
-                    _noCharacter.value=false
-                    if (result != null) {
-                        _response=result.data.characters
+                if (!result?.data?.characters.isNullOrEmpty()) {
+                    _progress.value = false
+                    _noCharacter.value = false
+                    val list = mutableListOf<Character>().apply {
+                        _charactersList.value?.let { addAll(it) }
+                        result?.data?.characters?.let { addAll(it) }
                     }
-                    _charactersList.value=result?.data?.characters
-                }else{
-                    _noCharacter.value=true
-                    _progress.value=false
-                }
-            }catch (e: Exception){
-                _noCharacter.value=false
+                    _charactersList.value = list
 
-                _progress.value=false
-                _errorMessage.value=e.message
+                    offset += limit
+
+                } else {
+                    _noCharacter.value = true
+                    _progress.value = false
+                }
+            } catch (e: Exception) {
+                _noCharacter.value = false
+
+                _progress.value = false
+                _errorMessage.value = e.message
             }
         }
     }
+
     fun onItemClicked(character: Character) {
         _navigate.value = character
 
     }
 
 
-    fun completeNavigation(){
-        _navigate.value=null
+    fun completeNavigation() {
+        _navigate.value = null
 
     }
 }

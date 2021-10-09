@@ -14,6 +14,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.marvelapp.EndlessRecyclerViewScrollListener
 import com.marvelapp.R
 import com.marvelapp.databinding.CharacterListFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,7 +56,7 @@ class CharacterListFragment : Fragment() {
     private fun observeNavigation() {
         viewModel.navigate.observe(viewLifecycleOwner) {
             it?.let {
-                findNavController().navigate(CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailsFragment())
+                findNavController().navigate(CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailsFragment(it.id))
                 viewModel.completeNavigation()
             }
         }
@@ -95,6 +98,14 @@ class CharacterListFragment : Fragment() {
     private fun setUpAdapter() {
         adapter = CharactersAdapter(CharacterClickListener { viewModel.onItemClicked(it) })
         binding.characterRv.adapter = adapter
+        binding.characterRv.addOnScrollListener(
+            object : EndlessRecyclerViewScrollListener(binding.characterRv.layoutManager as LinearLayoutManager) {
+                override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
+                    viewModel.getCharacters()
+                }
+            }
+        )
+
     }
 
 

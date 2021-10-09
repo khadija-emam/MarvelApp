@@ -20,8 +20,8 @@ import javax.inject.Singleton
  */
  const val API_KEY = "63b1f94dad044add871d1e319c630265"
 private const val NEWS_BASE_URL = "https://gateway.marvel.com/"
-private const val API_PUBLIC="4dca613e1fb17f606801b604fe4c833b"
-private const val API_PRIVATE="93b89f393de8af4f9ab7f8f34988500153cf7944"
+ const val API_PUBLIC="4dca613e1fb17f606801b604fe4c833b"
+ const val API_PRIVATE="93b89f393de8af4f9ab7f8f34988500153cf7944"
         // Install this module in Hilt-generated SingletonComponent
 
 @InstallIn(SingletonComponent::class)

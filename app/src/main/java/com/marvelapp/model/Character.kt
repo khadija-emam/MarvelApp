@@ -22,6 +22,7 @@ data class Data(
     @SerializedName("count") val count : Int,
     @SerializedName("results") val characters : List<Character>
 )
+
 @Parcelize
 data class Character (
 
@@ -92,3 +93,4 @@ data class Thumbnail (
     @SerializedName("path") val path : String,
     @SerializedName("extension") val extension : String
 ):Parcelable
+

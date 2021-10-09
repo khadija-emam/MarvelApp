@@ -6,12 +6,20 @@ import javax.inject.Inject
 
 class RemoteDataSourceImpl @Inject constructor(val retrofitService: RetrofitService):
     RemoteDataSource {
-    override suspend fun getCharaters(): CharactersResponse? {
-        val result=retrofitService.getCharacters()
+    override suspend fun getCharacters(limit: Int, offset: Int): CharactersResponse? {
+        val result=retrofitService.getCharacters(limit,offset)
         if (result.isSuccessful){
             return result.body()
         }else{
             throw Exception(result.message())
         }
     }
+
+    override suspend fun getCharacterById(characterId: Int): CharactersResponse? {
+        val result=retrofitService.getCharacterById(characterId)
+        if (result.isSuccessful){
+            return result.body()
+        }else{
+            throw Exception(result.message())
+        }    }
 }

@@ -20,7 +20,11 @@
         android:id="@+id/characterDetailsFragment"
         android:name="com.marvelapp.ui.characterdetails.CharacterDetailsFragment"
         android:label="character_details_fragment"
-        tools:layout="@layout/character_details_fragment" />
+        tools:layout="@layout/character_details_fragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.marvelapp.ui.search.SearchFragment"

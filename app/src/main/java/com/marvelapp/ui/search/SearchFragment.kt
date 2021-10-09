@@ -84,7 +84,9 @@ class SearchFragment : Fragment() {
     }
     private fun observeForNavigation(){
         viewModel.navigate.observe(viewLifecycleOwner, Observer {
-            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToCharacterDetailsFragment())
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToCharacterDetailsFragment(
+                it?.id!!
+            ))
         })
     }
 

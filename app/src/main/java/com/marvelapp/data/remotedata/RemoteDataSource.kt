@@ -4,5 +4,7 @@ import com.marvelapp.model.CharactersResponse
 
 
 interface RemoteDataSource {
-suspend fun getCharaters(): CharactersResponse?
+suspend fun getCharacters(limit: Int, offset: Int): CharactersResponse?
+suspend fun getCharacterById(characterId:Int):CharactersResponse?
+
 }
