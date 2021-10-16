@@ -7,11 +7,12 @@
     <application
         android:name=".MarvelApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_marvel_studios_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_marvel_studios_logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MarvelApp">
+        android:theme="@style/Theme.MarvelApp"
+        android:usesCleartextTraffic="true">
 
         <activity android:name=".MainActivity">
             <intent-filter>

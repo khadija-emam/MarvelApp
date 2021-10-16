@@ -76,6 +76,7 @@ class SearchFragment : Fragment() {
             findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToCharacterDetailsFragment(
                 it?.id!!
             ))
+            viewModel.completeNavigation()
         })
     }
 

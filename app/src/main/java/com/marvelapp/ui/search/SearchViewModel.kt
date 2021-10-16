@@ -41,4 +41,9 @@ class SearchViewModel  @Inject constructor(val repository: Repository) : ViewMod
 
     }
 
+    fun completeNavigation() {
+        _navigate.value = null
+
+    }
+
 }
