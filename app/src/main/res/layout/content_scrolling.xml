@@ -68,8 +68,6 @@
             android:textSize="18sp"
             android:text="@string/Comics"
             android:textStyle="bold"
-            android:visibility="@{viewModel.comicsList.empty? View.GONE:View.VISIBLE}"
-
             app:layout_constraintTop_toBottomOf="@id/character_desc"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -81,8 +79,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
             android:layout_marginEnd="8dp"
-            android:visibility="@{viewModel.comicsList.empty? View.GONE:View.VISIBLE}" />
-
+/>
         <TextView
             android:id="@+id/events"
             android:layout_width="wrap_content"
@@ -93,7 +90,6 @@
             android:textSize="18sp"
             android:text="@string/events"
             android:textStyle="bold"
-            android:visibility="@{viewModel.eventsList.empty? View.GONE:View.VISIBLE}"
             app:layout_constraintTop_toBottomOf="@id/comics_rv"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -104,9 +100,7 @@
             app:layout_constraintTop_toBottomOf="@id/events"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
-            android:layout_marginEnd="8dp"
-
-            android:visibility="@{viewModel.eventsList.empty? View.GONE:View.VISIBLE}" />
+            android:layout_marginEnd="8dp" />
 
         <TextView
             android:id="@+id/series"
@@ -120,7 +114,7 @@
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/events_rv"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="@{viewModel.seriesList.empty? View.GONE:View.VISIBLE}" />
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/series_rv"
@@ -131,7 +125,7 @@
             android:orientation="horizontal"
             android:layout_marginEnd="8dp"
 
-            android:visibility="@{viewModel.seriesList.empty? View.GONE:View.VISIBLE}" />
+            />
 
         <TextView
             android:id="@+id/stories"
@@ -145,7 +139,7 @@
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/series_rv"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="@{viewModel.storiesList.empty? View.GONE:View.VISIBLE}" />
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/stories_rv"
@@ -156,17 +150,9 @@
             android:orientation="horizontal"
             android:layout_marginEnd="8dp"
 
-            android:visibility="@{viewModel.storiesList.empty? View.GONE:View.VISIBLE}" />
+            />
 
-        <ProgressBar
-            android:id="@+id/loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

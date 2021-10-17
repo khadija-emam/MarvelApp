@@ -64,12 +64,12 @@ class CharacterDetailsViewModel @Inject constructor(val repository: Repository) 
             try {
                 if (result != null) {
                     if (!result.data.characters.isNullOrEmpty()) {
-                        _progress.value = false
                         _charactersList.value = result.data.characters
                         getComics(id)
                         getEvents(id)
                         getSeries(id)
                         getStories(id)
+                        _progress.value = false
 
                     }
                 }
@@ -98,6 +98,7 @@ class CharacterDetailsViewModel @Inject constructor(val repository: Repository) 
     
             if (res != null) {
                 _eventsList.value=res.detail
+                Log.i("TAG", "getEvents: ${res.detail}")
             }
 
         }

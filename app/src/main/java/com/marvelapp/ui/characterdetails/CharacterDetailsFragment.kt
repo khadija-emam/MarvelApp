@@ -72,9 +72,9 @@ class CharacterDetailsFragment : Fragment() {
     private fun observeForLoading() {
         viewModel.progress.observe(viewLifecycleOwner, Observer {
             if (it) {
-                binding.content.loading.visibility = View.VISIBLE
+                binding.loading.visibility = View.VISIBLE
             } else {
-                binding.content.loading.visibility = View.GONE
+                binding.loading.visibility = View.GONE
 
             }
         })
@@ -110,23 +110,42 @@ class CharacterDetailsFragment : Fragment() {
     }
     private fun observeForComics() {
         viewModel.comicsList.observe(viewLifecycleOwner, Observer {
-
-         comicsAdapter.submitList(it)
+         if (it.isNotEmpty()) {
+             comicsAdapter.submitList(it)
+         }else{
+             binding.content.comics.visibility=View.GONE
+             binding.content.comicsRv.visibility=View.GONE
+         }
         })
     }
     private fun observeForEvents() {
         viewModel.eventsList.observe(viewLifecycleOwner, Observer {
-            eventsAdapter.submitList(it)
+            if (it.isNotEmpty()) {
+                eventsAdapter.submitList(it)
+            }else{
+                binding.content.events.visibility=View.GONE
+                binding.content.eventsRv.visibility=View.GONE
+            }
         })
     }
     private fun observeForSeries() {
         viewModel.seriesList.observe(viewLifecycleOwner, Observer {
-            seriesAdapter.submitList(it)
+            if (it.isNotEmpty()) {
+                seriesAdapter.submitList(it)
+            }else{
+                binding.content.series.visibility=View.GONE
+                binding.content.seriesRv.visibility=View.GONE
+            }
         })
     }
     private fun observeForStories() {
         viewModel.storiesList.observe(viewLifecycleOwner, Observer {
-            storiesAdapter.submitList(it)
+            if (it.isNotEmpty()) {
+                storiesAdapter.submitList(it)
+            }else{
+                binding.content.stories.visibility=View.GONE
+                binding.content.storiesRv.visibility=View.GONE
+            }
         })
     }
 }
