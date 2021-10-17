@@ -87,7 +87,7 @@ class CharacterDetailsViewModel @Inject constructor(val repository: Repository) 
 
                 if (res != null) {
                  _comicsList.value=res.detail
-                    Log.i("TAG", "getComics: ${res.detail[0].name}")
+
                 }
 
         }
