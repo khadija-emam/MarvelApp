@@ -61,7 +61,12 @@ class CharacterDetailsFragment : Fragment() {
     }
     private fun setCharacterData(character:Character){
         binding.content.characterName.text=character.name
-        binding.content.characterDesc.text=character.description
+        if (character.description.isNotEmpty()){
+            binding.content.characterDesc.text=character.description
+
+        }else{
+            binding.content.desc.visibility=View.GONE
+        }
         bindCharacterImage(binding.characterImg,character.thumbnail)
     }
     private fun observeForMessage() {

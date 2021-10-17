@@ -17,14 +17,9 @@ fun bindCharacterImage(imgView: ImageView, imgUrl: Thumbnail?) {
         Log.i("TAG", "bindCharacterImage: ${imgUrl.path}/portrait_xlarge.${imgUrl.extension} ")
         Picasso.get()
             .load("${imgUrl.path}/portrait_xlarge.${imgUrl.extension}")
-            .error(R.drawable.ic_marvel_studios_logo)
+            .error(R.drawable.ic_broken_image_24)
             .into(imgView)
 
     }
 }
 
-fun loadImageWithHeader(context: Context, url: String, image: AppCompatImageView) {
-    val timeStamp = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())
-
-
-}
