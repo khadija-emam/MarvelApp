@@ -18,7 +18,6 @@ import javax.inject.Singleton
 /**
  * Movie API communication setup via Retrofit.
  */
- const val API_KEY = "63b1f94dad044add871d1e319c630265"
 private const val NEWS_BASE_URL = "https://gateway.marvel.com/"
  const val API_PUBLIC="4dca613e1fb17f606801b604fe4c833b"
  const val API_PRIVATE="93b89f393de8af4f9ab7f8f34988500153cf7944"
